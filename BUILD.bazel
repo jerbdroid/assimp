@@ -1,0 +1,22 @@
+load("@rules_foreign_cc//foreign_cc:defs.bzl", "cmake")
+
+package(default_visibility = ["//visibility:public"])
+
+filegroup(
+    name = "all_srcs",
+    srcs = glob(["**"]),
+    visibility = ["//visibility:public"],
+)
+
+cmake(
+    name = "assimp",
+    cache_entries = {
+        "CMAKE_C_FLAGS": "-Wno-error -Wno-unsafe-buffer-usage -Wno-newline-eof -Wno-builtin-macro-redefined -Wno-unreachable-code-break -Wno-deprecated",
+        "CMAKE_CXX_FLAGS": "-Wno-error -Wno-unsafe-buffer-usage -Wno-newline-eof -Wno-builtin-macro-redefined -Wno-unreachable-code-break -Wno-deprecated",
+    },
+    lib_source = ":all_srcs",
+    out_static_libs = [
+        "assimp-vc143-mt.lib",
+        "zlibstatic.lib",
+    ],
+)
