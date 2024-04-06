@@ -8,6 +8,21 @@ filegroup(
     visibility = ["//visibility:public"],
 )
 
+config_setting(
+    name = "opt_build",
+    values = {"compilation_mode": "opt"},
+)
+
+config_setting(
+    name = "dbg_build",
+    values = {"compilation_mode": "dbg"},
+)
+
+config_setting(
+    name = "fast_build",
+    values = {"compilation_mode": "fastbuild"},
+)
+
 cmake(
     name = "assimp",
     cache_entries = {
@@ -15,8 +30,18 @@ cmake(
         "CMAKE_CXX_FLAGS": "-Wno-error -Wno-unsafe-buffer-usage -Wno-newline-eof -Wno-builtin-macro-redefined -Wno-unreachable-code-break -Wno-deprecated",
     },
     lib_source = ":all_srcs",
-    out_static_libs = [
-        "assimp-vc143-mt.lib",
-        "zlibstatic.lib",
-    ],
+    out_static_libs = select({
+        ":opt_build": [
+            "assimp-vc143-mt.lib",
+            "zlibstatic.lib",
+        ],
+        ":fast_build": [
+            "assimp-vc143-mt.lib",
+            "zlibstatic.lib",
+        ],
+        ":dbg_build": [
+            "assimp-vc143-mtd.lib",
+            "zlibstaticd.lib",
+        ],
+    }),
 )

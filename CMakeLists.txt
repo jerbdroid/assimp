@@ -148,7 +148,7 @@ IF (WIN32)
   IF(MSVC)
     OPTION( ASSIMP_INSTALL_PDB
       "Install MSVC debug files."
-      ON )
+      OFF )
     IF(NOT (MSVC_VERSION LESS 1900))
       # Multibyte character set is deprecated since at least MSVC2015 (possibly earlier)
       ADD_DEFINITIONS( -DUNICODE -D_UNICODE )
