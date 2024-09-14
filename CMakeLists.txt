@@ -148,6 +148,15 @@ ELSE()
   )
 ENDIF()
 
+option(ASSIMP_MSVC_STATIC_RUNTIME
+  "Link static runtime libraries"
+  ON)
+if( ASSIMP_MSVC_STATIC_RUNTIME)
+  set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+else()
+  set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+endif()
+
 IF (WIN32)
   # Use a subset of Windows.h
   ADD_DEFINITIONS( -DWIN32_LEAN_AND_MEAN )
