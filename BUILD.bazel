@@ -26,8 +26,8 @@ config_setting(
 cmake(
     name = "assimp",
     cache_entries = {
-        "CMAKE_C_FLAGS": "-Wno-error -Wno-unsafe-buffer-usage -Wno-newline-eof -Wno-builtin-macro-redefined -Wno-unreachable-code-break -Wno-deprecated -Wno-switch-default -Wno-shorten-64-to-32",
-        "CMAKE_CXX_FLAGS": "-Wno-error -Wno-unsafe-buffer-usage -Wno-newline-eof -Wno-builtin-macro-redefined -Wno-unreachable-code-break -Wno-deprecated -Wno-switch-default -Wno-shorten-64-to-32",
+        "CMAKE_C_FLAGS": "-Wno-error -Wno-unsafe-buffer-usage -Wno-newline-eof -Wno-builtin-macro-redefined -Wno-unreachable-code-break -Wno-deprecated -Wno-switch-default -Wno-shorten-64-to-32 -Wno-format",
+        "CMAKE_CXX_FLAGS": "-Wno-error -Wno-unsafe-buffer-usage -Wno-newline-eof -Wno-builtin-macro-redefined -Wno-unreachable-code-break -Wno-deprecated -Wno-switch-default -Wno-shorten-64-to-32 -Wno-format",
     },
     lib_source = ":all_srcs",
     out_static_libs = select({
